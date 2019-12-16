@@ -4,6 +4,8 @@ import com.example.geo.business.GeoLocator;
 import com.example.geo.utils.mapper.InputStreamMapper;
 import com.example.geo.utils.mapper.JsonMapper;
 import com.example.geo.output.GeoLocation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +24,16 @@ public class GeoLoc {
     @Autowired
     GeoLocator geoLocatorSingleton;
 
+    private static final Logger logger = LogManager.getLogger(GeoLoc.class);
+
     @Path("getGeo")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getGeo(String address) {
         try{
-            System.out.println("Input : " + address);
-            //throw new Exception("error1");
+            //System.out.println("Input : " + address);
+            logger.debug("Input : " + address);
+
             return Response.ok(JsonMapper.getJsonFromObject(geoLocatorSingleton.getGeoLocation(address))).build();
         } catch(Exception e){
             e.printStackTrace();
@@ -49,11 +54,10 @@ public class GeoLoc {
             listAddresses = InputStreamMapper.convertToListString(body.getEntityAs(InputStream.class));
 
             for(String address: listAddresses) {
-                System.out.println("linea : " + address);
+                //System.out.println("linea : " + address);
+                logger.debug("File line : " + address);
                 locations.put(address, geoLocatorSingleton.getGeoLocation(address));
             }
-
-            //throw new Exception("error2");
 
             return Response.ok(JsonMapper.getJsonFromObject(locations)).build();
         } catch(Exception e){

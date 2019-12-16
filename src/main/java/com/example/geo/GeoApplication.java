@@ -19,7 +19,7 @@ public class GeoApplication {
 		ApplicationContext applicationContext =
 				new ClassPathXmlApplicationContext("ApplicationContext.xml");
 
-
+/*
 		// TODO : get xsd from url
 		//GeoLocator geoLocatorSingleton = (GeoLocator)applicationContext.getBean("geoLocatorSingleton");
 		//geoLocatorSingleton.setIsXSD();
@@ -27,13 +27,15 @@ public class GeoApplication {
 		String url = "https://geocoder.ls.hereapi.com/6.2/xsd/LBSP-Search-Search.xsd?apiKey=zRKCNulsmituY-IuLoyca4d50QYtpjW4C4H5Do6d9MQ";
 
 		try {
-			InputStream is = XMLConsumer.getXMLFromURL(url, null);
+			InputStream is = XMLConsumer.getResponseFromURL(url, null);
 
 			GeoLocator geoLocatorSingleton = (GeoLocator)applicationContext.getBean("geoLocatorSingleton");
 			geoLocatorSingleton.setIsXSD(is);
 		} catch (IOException e) {
 			e.printStackTrace();
 		};
+
+ */
 	}
 
 }

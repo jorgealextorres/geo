@@ -1,5 +1,8 @@
 package com.example.geo.utils.mapper;
 
+import com.example.geo.rest.GeoLoc;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -13,7 +16,9 @@ import java.net.URLEncoder;
 
 public class XMLConsumer {
 
-    public static InputStream getXMLFromURL(String urlInput, String[] params) throws IOException {
+    private static final Logger logger = LogManager.getLogger(GeoLoc.class);
+
+    public static InputStream getResponseFromURL(String urlInput, String[] params) throws IOException {
 
         String urlInputBuild = urlInput;
         String queryChart = "?";
@@ -27,7 +32,8 @@ public class XMLConsumer {
             }
         }
 
-        System.out.println(urlInputBuild);
+        //System.out.println(urlInputBuild);
+        logger.debug("URL : " + urlInputBuild);
 
         URL url = new URL(urlInputBuild);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
