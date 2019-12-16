@@ -1,4 +1,4 @@
-package com.example.geo.mapper;
+package com.example.geo.utils.mapper;
 
 import com.google.gson.Gson;
 
