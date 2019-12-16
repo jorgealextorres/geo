@@ -23,15 +23,7 @@ public class RemoteLocatorResponseConfig {
         return latitudeJsonPath;
     }
 
-    public void setLatitudeJsonPath(String latitudeJsonPath) {
-        this.latitudeJsonPath = latitudeJsonPath;
-    }
-
     public String getLongitudeJsonPath() {
         return longitudeJsonPath;
-    }
-
-    public void setLongitudeJsonPath(String longitudeJsonPath) {
-        this.longitudeJsonPath = longitudeJsonPath;
     }
 }

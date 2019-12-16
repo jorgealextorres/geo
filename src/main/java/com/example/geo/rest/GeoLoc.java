@@ -1,9 +1,10 @@
 package com.example.geo.rest;
 
 import com.example.geo.business.GeoLocator;
-import com.example.geo.utils.mapper.InputStreamMapper;
-import com.example.geo.utils.mapper.JsonMapper;
-import com.example.geo.output.GeoLocation;
+import com.example.geo.output.ListGeoLocationOutput;
+import com.example.geo.utils.CustomError;
+import com.example.geo.utils.Utils;
+import com.example.geo.output.GeoLocationOutput;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
@@ -24,6 +25,9 @@ public class GeoLoc {
     @Autowired
     GeoLocator geoLocatorSingleton;
 
+    @Autowired
+    CustomError customError;
+
     private static final Logger logger = LogManager.getLogger(GeoLoc.class);
 
     @Path("getGeo")
@@ -31,10 +35,9 @@ public class GeoLoc {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getGeo(String address) {
         try{
-            //System.out.println("Input : " + address);
             logger.debug("Input : " + address);
 
-            return Response.ok(JsonMapper.getJsonFromObject(geoLocatorSingleton.getGeoLocation(address))).build();
+            return Response.ok(Utils.getJsonFromObject(geoLocatorSingleton.getGeoLocation(address))).build();
         } catch(Exception e){
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e).build();
@@ -47,19 +50,24 @@ public class GeoLoc {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getGeoFromFile(@FormDataParam("file") FormDataBodyPart body) {
-        Map<String, GeoLocation> locations = new HashMap<>();
+        Map<String, GeoLocationOutput> locations = new HashMap<>();
+        Map<String, String> errors = new HashMap<>();
         List<String> listAddresses;
 
         try{
-            listAddresses = InputStreamMapper.convertToListString(body.getEntityAs(InputStream.class));
+            listAddresses = Utils.convertInputStreamToListString(body.getEntityAs(InputStream.class));
 
             for(String address: listAddresses) {
-                //System.out.println("linea : " + address);
                 logger.debug("File line : " + address);
-                locations.put(address, geoLocatorSingleton.getGeoLocation(address));
+                try {
+                    locations.put(address, geoLocatorSingleton.getGeoLocation(address));
+                } catch(Exception e){
+                    logger.error(e.getMessage(), e);
+                    errors .put(address, customError.getMessage() );
+                }
             }
 
-            return Response.ok(JsonMapper.getJsonFromObject(locations)).build();
+            return Response.ok(Utils.getJsonFromObject(new ListGeoLocationOutput(locations, errors))).build();
         } catch(Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }

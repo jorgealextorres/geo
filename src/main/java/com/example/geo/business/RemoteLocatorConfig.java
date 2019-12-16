@@ -23,15 +23,8 @@ public class RemoteLocatorConfig {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getSearchField() {
         return searchField;
     }
 
-    public void setSearchField(String searchField) {
-        this.searchField = searchField;
-    }
 }

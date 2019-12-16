@@ -1,22 +1,43 @@
-package com.example.geo.utils.mapper;
+package com.example.geo.utils;
 
 import com.example.geo.rest.GeoLoc;
+import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
+import org.springframework.util.CollectionUtils;
 
-import javax.xml.xpath.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class XMLConsumer {
+public class Utils {
 
-    private static final Logger logger = LogManager.getLogger(GeoLoc.class);
+    private static final Logger logger = LogManager.getLogger(Utils.class);
+
+    public static List<String> convertInputStreamToListString(InputStream is){
+        List<String> list = new ArrayList<>();
+
+        Scanner sc = new Scanner(is);
+
+        while(sc.hasNext()){
+            list.add(sc.nextLine());
+        }
+
+        if(CollectionUtils.isEmpty(list)){
+            list = null;
+        }
+
+        return list;
+    }
+
+    public static String getJsonFromObject(Object obj){
+        Gson gson = new Gson();
+        return gson.toJson(obj);
+    }
 
     public static InputStream getResponseFromURL(String urlInput, String[] params) throws IOException {
 
@@ -32,13 +53,11 @@ public class XMLConsumer {
             }
         }
 
-        //System.out.println(urlInputBuild);
         logger.debug("URL : " + urlInputBuild);
 
         URL url = new URL(urlInputBuild);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
-        //conn.setRequestProperty("Accept", "application/xml");
 
         if (conn.getResponseCode() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "
@@ -46,16 +65,5 @@ public class XMLConsumer {
         }
 
         return conn.getInputStream();
-    }
-
-    public static String getValueFRomXPath(Document doc, String xpathInput) throws XPathExpressionException {
-        XPathFactory xPathfactory = XPathFactory.newInstance();
-        XPath xpath = xPathfactory.newXPath();
-        XPathExpression expr = xpath.compile(xpathInput);
-        NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-
-        System.out.println(nl.toString());
-
-        return nl.item(0).getNodeValue();
     }
 }
