@@ -1,13 +1,13 @@
 package com.example.geo.output;
 
-public class GeoLocationOutput {
+public class GeoLocation {
     private Double latitude;
     private Double longitude;
 
-    public GeoLocationOutput() {
+    public GeoLocation() {
     }
 
-    public GeoLocationOutput(Double latitude, Double longitude) {
+    public GeoLocation(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
