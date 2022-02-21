@@ -137,53 +137,53 @@ Test to get the gelocalization from an address.
  * indivual error
  
  
-     {
-         "locations": [],
-         "errors": [
-             {
-                 "originalSearch": "Barcelona, Barcelona ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "C. Vilamari, 50, Barcelona ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "Pl. Jar Jar Binks, 42, Barcelona ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "Felip II, 323, Barcelona 08015 Barcelona ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "calle de las doncellas, 10, Barcelona ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "Plaza España Gran Vía de la Corte Catalana, 423, 08015 Barcelona ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "inAtlas",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "Fuente de Montjuic ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "nowhere ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "Melbourne ",
-                 "error": "An error was raised. Please contact the provider for more information."
-             },
-             {
-                 "originalSearch": "Universidade de Campinas, Brasil",
-                 "error": "An error was raised. Please contact the provider for more information."
-             }
-         ]
-     }
+         {
+             "locations": [],
+             "errors": [
+                 {
+                     "originalSearch": "Barcelona, Barcelona ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "C. Vilamari, 50, Barcelona ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "Pl. Jar Jar Binks, 42, Barcelona ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "Felip II, 323, Barcelona 08015 Barcelona ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "calle de las doncellas, 10, Barcelona ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "Plaza España Gran Vía de la Corte Catalana, 423, 08015 Barcelona ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "inAtlas",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "Fuente de Montjuic ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "nowhere ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "Melbourne ",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 },
+                 {
+                     "originalSearch": "Universidade de Campinas, Brasil",
+                     "error": "An error was raised. Please contact the provider for more information."
+                 }
+             ]
+         }
  
